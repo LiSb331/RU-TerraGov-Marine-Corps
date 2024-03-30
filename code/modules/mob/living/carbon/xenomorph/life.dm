@@ -37,6 +37,9 @@
 	update_action_button_icons()
 	update_icons(FALSE)
 
+	if(behavior_delegate)
+		behavior_delegate.on_life()
+
 /mob/living/carbon/xenomorph/handle_fire()
 	. = ..()
 	if(.)

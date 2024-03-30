@@ -62,6 +62,9 @@
 			//From this point, we are certain a full attack will go out. Calculate damage and modifiers
 			var/damage = X.xeno_caste.melee_damage
 
+			if(X.behavior_delegate)
+				damage = X.behavior_delegate.melee_attack_modify_damage(damage, src)
+
 			//Somehow we will deal no damage on this attack
 			if(!damage)
 				X.do_attack_animation(src)
@@ -69,6 +72,11 @@
 				X.visible_message(span_danger("\The [X] lunges at [src]!"), \
 				span_danger("We lunge at [src]!"), null, 5)
 				return FALSE
+
+			if(X.behavior_delegate)
+				var/datum/behavior_delegate/MD = X.behavior_delegate
+				MD.melee_attack_additional_effects_target(src)
+				MD.melee_attack_additional_effects_self()
 
 			X.visible_message(span_danger("\The [X] slashes [src]!"), \
 			span_danger("We slash [src]!"), null, 5)

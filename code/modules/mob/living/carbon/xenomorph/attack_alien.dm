@@ -17,6 +17,19 @@
 	return TRUE
 
 /mob/living/carbon/human/attack_alien_grab(mob/living/carbon/xenomorph/X)
+	if(X.behavior_delegate)
+		var/intent = X.a_intent
+		intent = X.behavior_delegate.override_intent(src)
+		switch(intent)
+			if(INTENT_HELP)
+				//TODO: help intent
+				src.attack_alien(X)
+			if(INTENT_DISARM)
+				src.attack_alien_disarm(X)
+			if(INTENT_HARM)
+				src.attack_alien_harm(X)
+
+
 	if(check_shields(COMBAT_TOUCH_ATTACK, X.xeno_caste.melee_damage, "melee"))
 		return ..()
 	X.visible_message(span_danger("\The [X]'s grab is blocked by [src]'s shield!"),
@@ -93,6 +106,13 @@
 			span_danger("Our slash is blocked by [src]'s shield!"), null, COMBAT_MESSAGE_RANGE)
 		return FALSE
 
+	if(X.behavior_delegate)
+		var/datum/behavior_delegate/MD = X.behavior_delegate
+		damage = MD.melee_attack_modify_damage(damage, src)
+		MD.melee_attack_additional_effects_target(src)
+		MD.melee_attack_additional_effects_self()
+
+
 	var/attack_sound = "alien_claw_flesh"
 	var/attack_message1 = span_danger("\The [X] slashes [src]!")
 	var/attack_message2 = span_danger("We slash [src]!")
@@ -162,6 +182,10 @@
 
 
 /mob/living/carbon/human/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
+	if(X.behavior_delegate && X.behavior_delegate.handle_slash(src))
+		//TODO: is it even right?
+		//return XENO_NO_DELAY_ACTION
+		return FALSE
 
 	if(stat == DEAD)
 		if(istype(wear_ear, /obj/item/radio/headset/mainship))

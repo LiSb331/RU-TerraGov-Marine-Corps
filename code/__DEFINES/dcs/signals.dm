@@ -475,6 +475,9 @@
 #define COMSIG_MOB_ITEM_ATTACK_ALTERNATE "mob_item_attack_alt"	//from base of /obj/item/attack_alternate(): (mob/target, /obj/item/attacking_item)
 	#define COMPONENT_ITEM_NO_ATTACK (1<<0)						//return this if you dont want attacka and altattacks to run
 
+/// For any additional things that should happen when a xeno's melee_attack_additional_effects_self() proc is called
+#define COMSIG_XENO_SLASH_ADDITIONAL_EFFECTS_SELF "xeno_slash_additional_effects_self"
+
 ///Called when an object is grilled ontop of a griddle
 #define COMSIG_ITEM_GRILLED "item_griddled"
 	#define COMPONENT_HANDLED_GRILLING (1<<0)
@@ -747,6 +750,7 @@
 #define COMSIG_XENOABILITY_HEADBITE "xenoability_headbite"
 #define COMSIG_XENOABILITY_REGURGITATE "xenoability_regurgitate"
 #define COMSIG_XENOABILITY_BLESSINGSMENU "xenoability_blesssingsmenu"
+#define COMSIG_XENOABILITY_PURCHASE_STRAIN "keybinding_purchase_strain"
 #define COMSIG_XENOABILITY_DROP_WEEDS "xenoability_drop_weeds"
 #define COMSIG_XENOABILITY_CHOOSE_WEEDS "xenoability_choose_weeds"
 #define COMSIG_XENOABILITY_DROP_PLANT "xenoability_drop_plant"
@@ -779,6 +783,7 @@
 #define COMSIG_XENOABILITY_ESSENCE_LINK "xenoability_essence_link"
 #define COMSIG_XENOABILITY_ESSENCE_LINK_REMOVE "xenoability_essence_link_remove"
 #define COMSIG_XENOABILITY_ENHANCEMENT "xenoability_enhancement"
+#define COMSIG_XENOABILITY_SACRIFICE "xenoability_sacrifice"
 
 #define COMSIG_XENOABILITY_LONG_RANGE_SIGHT "xenoability_long_range_sight"
 #define COMSIG_XENOABILITY_TOGGLE_BOMB "xenoability_toggle_bomb"
