@@ -310,6 +310,35 @@
 	var/sunder = 0
 	///The ammo datum for our spit projectiles. We're born with this, it changes sometimes.
 	var/datum/ammo/xeno/ammo = null
+
+	/// The xeno's strain, if they've taken one.
+	var/datum/xeno_strain/strain = null
+
+	/// A list of strain typepaths that are able to be chosen by this caste.
+	var/list/available_strains = list()
+
+	// Holds behavior delegate. Governs all 'unique' hooked behavior of the Xeno. Set by caste datums and strains.
+	var/datum/behavior_delegate/behavior_delegate = null
+
+	// The type of mutator delegate to instantiate on the base caste. Will
+	// be replaced when the Xeno chooses a strain.
+	var/behavior_delegate_type = /datum/behavior_delegate
+
+	//////////////////////////////////////////////////////////////////
+	//
+	// Modifiers
+	//
+	// These are used by strains/mutators to buff/debuff a xeno's
+	//   stats. They can be mutated and are persistent between
+	// upgrades, but not evolutions (which are just a new Xeno)
+	// Strains that wish to change these should use the defines
+	// in xeno_defines.dm, NOT snowflake values
+	//
+	//////////////////////////////////////////////////////////////////
+	var/damage_modifier = 0
+
+	var/list/upgrades_bought = list()
+
 	///The aura we're currently emitted. Destroyed whenever we change or stop pheromones.
 	var/datum/aura_bearer/current_aura
 	/// If we're chosen as leader, this is the leader aura we emit.

@@ -81,6 +81,10 @@
 	AddElement(/datum/element/footstep, footstep_type, mob_size >= MOB_SIZE_BIG ? 0.8 : 0.5)
 	set_jump_component()
 
+	behavior_delegate = new behavior_delegate_type()
+	behavior_delegate.bound_xeno = src
+	behavior_delegate.add_to_xeno()
+
 /mob/living/carbon/xenomorph/register_init_signals()
 	. = ..()
 	RegisterSignal(src, COMSIG_LIVING_WEEDS_ADJACENT_REMOVED, PROC_REF(handle_weeds_adjacent_removed))
