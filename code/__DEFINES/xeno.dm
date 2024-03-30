@@ -201,3 +201,5 @@ GLOBAL_LIST_INIT(baneling_spawnable, list(
 #define ERROR_CONSTRUCT 8
 
 #define PUPPET_WITHER_RANGE 15
+
+#define DRONE_HEALER "Healer-drone"

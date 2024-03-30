@@ -16,3 +16,6 @@
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)
+	available_strains = list(
+		/datum/xeno_strain/healer,
+	)
