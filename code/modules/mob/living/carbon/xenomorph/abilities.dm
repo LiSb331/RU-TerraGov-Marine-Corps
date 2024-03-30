@@ -1330,3 +1330,20 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	X.hive.purchases.interact(X)
 	return succeed_activate()
+
+/////////////////////////////////
+// Strain Menu
+/////////////////////////////////
+/datum/action/ability/xeno_action/strains_menu
+	name = "Strains"
+	action_icon_state = "hivestore"
+	desc = "Opens the purchase strain menu, where xeno strains are taken."
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PURCHASE_STRAIN,
+	)
+	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_CRESTED|ABILITY_USE_AGILITY
+
+/datum/action/ability/xeno_action/strains_menu/action_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+	X.purchase_strain()
+	return succeed_activate()

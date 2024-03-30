@@ -27,6 +27,13 @@
 	keybind_signal = COMSIG_XENOABILITY_BLESSINGSMENU
 	hotkey_keys = list("P")
 
+/datum/keybinding/xenomorph/purchase_strain
+	name = "purchase_strain"
+	full_name = "Purchase Strain"
+	description = "Opens the purchase strain menu, where xeno strains are taken"
+	keybind_signal = COMSIG_XENOABILITY_PURCHASE_STRAIN
+	hotkey_keys = list("U")
+
 /datum/keybinding/xeno/drop_weeds
 	name = "drop_weeds"
 	full_name = "Drop Weed"

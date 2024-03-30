@@ -57,6 +57,7 @@
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/xeno_action/strains_menu,
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/activable/xeno/plant_weeds,

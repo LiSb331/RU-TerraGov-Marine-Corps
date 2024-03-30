@@ -167,6 +167,22 @@ KEYBINDINGS
 	if(!QDELETED(owner))
 		return TRUE
 
+/**
+ * Gives an action to a mob and returns it
+ *
+ * Can pass additional initialization args
+ */
+/proc/give_action(mob/L, action_path, ...)
+	var/datum/action/action
+	/// Cannot use arglist for both cases because of
+	/// unique BYOND handling of args in New
+	if(length(args) > 2)
+		action = new action_path(arglist(args.Copy(3)))
+	else
+		action = new action_path()
+	action.give_action(L)
+	return action
+
 /datum/action/proc/give_action(mob/M)
 	if(owner)
 		if(owner == M)
@@ -187,6 +203,13 @@ KEYBINDINGS
 				update_map_text(our_kb.get_keys_formatted(M.client), signal)
 
 	SEND_SIGNAL(M, ACTION_GIVEN)
+
+/proc/remove_action(mob/L, action_path)
+	for(var/a in L.actions)
+		var/datum/action/A = a
+		if(A.type == action_path)
+			A.remove_action(L)
+			return A
 
 /datum/action/proc/remove_action(mob/M)
 	for(var/type in keybinding_signals)
